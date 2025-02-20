@@ -2,7 +2,7 @@ package eu.urzicroft.command.exercise;
 
 import eu.urzicroft.Exercise;
 
-public class AdjustRepsCommand extends CommandExercise {
+public class AdjustRepsCommand extends ExerciseCommand {
     private final int reps;
 
     public AdjustRepsCommand(Exercise exercise, int reps) {

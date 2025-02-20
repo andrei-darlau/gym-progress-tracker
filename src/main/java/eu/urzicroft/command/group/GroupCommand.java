@@ -2,11 +2,11 @@ package eu.urzicroft.command.group;
 
 import eu.urzicroft.MuscleGroup;
 
-public abstract class CommandGroup {
+public abstract class GroupCommand {
     private MuscleGroup group;
     private final MuscleGroup backup;
 
-    public CommandGroup(MuscleGroup group) {
+    public GroupCommand(MuscleGroup group) {
         this.group = group;
         this.backup = group;
     }

@@ -2,11 +2,11 @@ package eu.urzicroft.command.exercise;
 
 import eu.urzicroft.Exercise;
 
-public abstract class CommandExercise {
+public abstract class ExerciseCommand {
     public Exercise exercise;
     public final Exercise backup;
 
-    public CommandExercise(Exercise exercise) {
+    public ExerciseCommand(Exercise exercise) {
         this.exercise = exercise;
         this.backup = exercise;
     }

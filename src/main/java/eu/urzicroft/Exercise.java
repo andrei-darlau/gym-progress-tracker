@@ -1,16 +1,16 @@
 package eu.urzicroft;
 
-public class Exercise {
-    private final int name;
-    private int weight;
-    private int reps;
+public class Exercise implements Comparable<Exercise> {
+    private final String name;
     private int sets;
+    private int reps;
+    private int weight;
 
-    public Exercise(int name, int weight, int reps, int sets) {
+    public Exercise(String name, int sets, int reps, int weight) {
         this.name = name;
-        this.weight = weight;
-        this.reps = reps;
         this.sets = sets;
+        this.reps = reps;
+        this.weight = weight;
     }
 
     public void setWeight(int weight) {
@@ -25,7 +25,7 @@ public class Exercise {
         this.sets = sets;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
@@ -39,5 +39,25 @@ public class Exercise {
 
     public int getSets() {
         return sets;
+    }
+
+    @Override
+    public int compareTo(Exercise e) {
+        if (this.weight > e.getWeight())
+            return 1;
+        else if (this.weight < e.getWeight())
+            return -1;
+        else {
+            if (this.reps > e.getReps())
+                return 1;
+            else if (this.reps < e.getReps())
+                return -1;
+            return 0;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Exercise: " + this.name + ", weight: " + this.weight + "kg, reps: " + this.reps;
     }
 }
