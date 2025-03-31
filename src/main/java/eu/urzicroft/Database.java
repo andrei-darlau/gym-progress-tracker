@@ -21,40 +21,10 @@ public class Database implements Serializable {
      */
     public static Database getInstance(String filePath) {
         if (instance == null) {
-            File file = new File(filePath);
-
-            if (file.exists()) {
-                try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-                    instance = (Database) in.readObject();
-                } catch (IOException | ClassNotFoundException e) {
-                    System.err.println("Error loading database from file: " + e.getMessage());
-                }
-            } else {
-                // new Instance because the class was never initialized
-                instance = new Database();
-            }
+            instance = new Database();
         }
 
         return instance;
-    }
-
-    /**
-     * Method to store the Database instance to a file.
-     *
-     *
-     * @param filePath Path to the serialized file.
-     */
-    public static void storeDatabase(String filePath) {
-        if (instance == null)
-            return;
-
-        File file = new File(filePath);
-
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
-            out.writeObject(instance);
-        } catch (IOException e) {
-            System.err.println("Error writing database to file: " + e.getMessage());
-        }
     }
 
     public void addWeek(Split split) {
@@ -65,13 +35,15 @@ public class Database implements Serializable {
         return splits;
     }
 
-    public Day getFirstFreeDay() {
-        Database database = Database.getInstance(Main.databasePath);
-
-        Split split = database.getWeeks().stream()
+    public Split getFirstFreeSplit() {
+        return this.getWeeks().stream()
                 .filter(splitInstance -> !splitInstance.isDone())
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("All splits are recorded."));
+    }
+
+    public Day getFirstFreeDay() {
+        Split split = getFirstFreeSplit();
 
         return split.getDays().stream()
                 .filter(dayInstance -> !dayInstance.isDone())
@@ -80,9 +52,8 @@ public class Database implements Serializable {
     }
 
     public Day getDay(String date) {
-        Database database = Database.getInstance(Main.databasePath);
-
-        Split split = database.getWeeks().stream()
+        Split split = this.getWeeks().stream()
+                .filter(split1 -> !split1.isDone())
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Day doesn't exist."));
 

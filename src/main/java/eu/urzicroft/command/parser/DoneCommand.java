@@ -27,6 +27,8 @@ public class DoneCommand implements CommandHandler {
 
         Day day = database.getDay(args[1]);
         day.setDone();
+
+        database.getFirstFreeSplit().areAllDaysDone();
     }
 
     @Override

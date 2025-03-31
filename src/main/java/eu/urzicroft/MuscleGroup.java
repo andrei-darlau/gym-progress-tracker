@@ -23,10 +23,6 @@ public class MuscleGroup {
         exercises.put(exercise.getName(), exercise);
     }
 
-    public Exercise getExercise(String exercise) {
-        return exercises.get(exercise.toUpperCase());
-    }
-
     public Name getGroup() {
         return group;
     }

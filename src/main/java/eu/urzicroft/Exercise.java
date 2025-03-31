@@ -37,10 +37,6 @@ public class Exercise implements Comparable<Exercise> {
         return reps;
     }
 
-    public int getSets() {
-        return sets;
-    }
-
     @Override
     public int compareTo(Exercise e) {
         if (this.weight > e.getWeight())

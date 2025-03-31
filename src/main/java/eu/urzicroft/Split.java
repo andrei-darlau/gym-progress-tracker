@@ -40,4 +40,22 @@ public class Split {
                 findFirst()
                 .orElseThrow(() -> new RuntimeException("Workout hasn't been added"));
     }
+
+    public static boolean allDaysDone(ArrayList<Day> days) {
+        if (days == null || days.isEmpty()) {
+            return false;
+        }
+
+        for (Day day : days) {
+            if (day == null || !day.isDone()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void areAllDaysDone() {
+        this.done = allDaysDone(this.days);
+    }
 }

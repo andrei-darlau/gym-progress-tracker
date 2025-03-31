@@ -2,8 +2,6 @@ package eu.urzicroft.command.parser;
 
 import eu.urzicroft.*;
 
-import java.util.ArrayList;
-
 public class CreateSplitCommand implements CommandHandler {
     /**
      * Creates a new Split/Split configuration for the next set of workouts.
@@ -28,8 +26,6 @@ public class CreateSplitCommand implements CommandHandler {
     @Override
     public void handle(String[] args) {
         Database database = Database.getInstance(Main.databasePath);
-
-        ArrayList<Split> splits = database.getWeeks();
 
         String splitName = args[1];
         int diffDays = Integer.parseInt(args[2]);
